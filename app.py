@@ -5,6 +5,7 @@ from datetime import date
 from pathlib import Path
 
 import streamlit as st
+import streamlit.components.v1 as components
 
 
 # =========================================================
@@ -80,23 +81,138 @@ def create_august_calendar_html(year):
     month_days = cal.monthdayscalendar(year, BIRTHDAY_MONTH)
 
     html = """
-    <div class="calendar-card">
-        <div class="calendar-header">
-            <div class="calendar-month">August</div>
-            <div class="calendar-year">Birthday Month</div>
-        </div>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                background: transparent;
+            }
 
-        <div class="calendar-weekday-grid">
-            <div>Sun</div>
-            <div>Mon</div>
-            <div>Tue</div>
-            <div>Wed</div>
-            <div>Thu</div>
-            <div>Fri</div>
-            <div>Sat</div>
-        </div>
+            .calendar-card {
+                background: linear-gradient(135deg, #ffffff 0%, #fff1f2 100%);
+                border-radius: 30px;
+                padding: 24px;
+                border: 1px solid rgba(244, 63, 94, 0.22);
+                box-shadow: 0 18px 42px rgba(225, 29, 72, 0.10);
+                box-sizing: border-box;
+                width: 100%;
+            }
 
-        <div class="calendar-day-grid">
+            .calendar-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 24px;
+            }
+
+            .calendar-month {
+                color: #9f1239;
+                font-weight: 900;
+                font-size: 30px;
+                line-height: 1;
+            }
+
+            .calendar-year {
+                background: #ffe4e6;
+                color: #9f1239;
+                padding: 10px 18px;
+                border-radius: 999px;
+                font-weight: 900;
+                font-size: 15px;
+                white-space: nowrap;
+            }
+
+            .calendar-weekday-grid {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                gap: 10px;
+                margin-bottom: 12px;
+                text-align: center;
+            }
+
+            .calendar-weekday-grid div {
+                color: #9f1239;
+                font-size: 15px;
+                font-weight: 900;
+            }
+
+            .calendar-day-grid {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                gap: 10px;
+            }
+
+            .calendar-day {
+                height: 66px;
+                border-radius: 17px;
+                background: #ffffff;
+                border: 1px solid rgba(244, 114, 182, 0.18);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                color: #334155;
+                font-weight: 900;
+                font-size: 18px;
+                box-sizing: border-box;
+            }
+
+            .empty-day {
+                background: transparent;
+                border: none;
+            }
+
+            .birthday-day {
+                background: linear-gradient(135deg, #fb7185, #db2777);
+                color: #ffffff;
+                box-shadow: 0 14px 30px rgba(219, 39, 119, 0.35);
+                border: none;
+                transform: scale(1.03);
+            }
+
+            .birthday-day span {
+                font-size: 20px;
+                line-height: 1;
+            }
+
+            .birthday-day small {
+                font-size: 18px;
+                margin-top: 8px;
+                line-height: 1;
+            }
+
+            .calendar-caption {
+                text-align: center;
+                color: #831843;
+                margin-top: 24px;
+                font-weight: 900;
+                font-size: 17px;
+                line-height: 1.45;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="calendar-card">
+            <div class="calendar-header">
+                <div class="calendar-month">August</div>
+                <div class="calendar-year">Birthday Month</div>
+            </div>
+
+            <div class="calendar-weekday-grid">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+
+            <div class="calendar-day-grid">
     """
 
     for week in month_days:
@@ -118,12 +234,14 @@ def create_august_calendar_html(year):
                 """
 
     html += """
-        </div>
+            </div>
 
-        <div class="calendar-caption">
-            August 26 is marked because this day belongs to Al Shihab 🎈
+            <div class="calendar-caption">
+                August 26 is marked because this day belongs to Al Shihab 🎈
+            </div>
         </div>
-    </div>
+    </body>
+    </html>
     """
 
     return html
@@ -299,112 +417,6 @@ st.markdown(
         color: #881337;
         line-height: 1.75;
         font-weight: 500;
-    }
-
-    /* =====================================================
-       Calendar Styling
-       ===================================================== */
-
-    .calendar-card {
-        background: linear-gradient(135deg, #ffffff 0%, #fff1f2 100%);
-        border-radius: 30px;
-        padding: 1.5rem;
-        border: 1px solid rgba(244, 63, 94, 0.22);
-        box-shadow: 0 18px 42px rgba(225, 29, 72, 0.10);
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .calendar-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1.35rem;
-    }
-
-    .calendar-month {
-        color: #9f1239;
-        font-weight: 900;
-        font-size: 1.75rem;
-        line-height: 1;
-    }
-
-    .calendar-year {
-        background: #ffe4e6;
-        color: #9f1239;
-        padding: 0.55rem 0.95rem;
-        border-radius: 999px;
-        font-weight: 900;
-        font-size: 0.92rem;
-        white-space: nowrap;
-    }
-
-    .calendar-weekday-grid {
-        display: grid;
-        grid-template-columns: repeat(7, minmax(0, 1fr));
-        gap: 0.55rem;
-        margin-bottom: 0.75rem;
-        text-align: center;
-    }
-
-    .calendar-weekday-grid div {
-        color: #9f1239;
-        font-size: 0.92rem;
-        font-weight: 900;
-    }
-
-    .calendar-day-grid {
-        display: grid;
-        grid-template-columns: repeat(7, minmax(0, 1fr));
-        gap: 0.55rem;
-    }
-
-    .calendar-day {
-        min-height: 66px;
-        border-radius: 17px;
-        background: #ffffff;
-        border: 1px solid rgba(244, 114, 182, 0.18);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        color: #334155;
-        font-weight: 900;
-        font-size: 1.04rem;
-        box-sizing: border-box;
-    }
-
-    .empty-day {
-        background: transparent;
-        border: none;
-    }
-
-    .birthday-day {
-        background: linear-gradient(135deg, #fb7185, #db2777);
-        color: #ffffff;
-        box-shadow: 0 14px 30px rgba(219, 39, 119, 0.35);
-        border: none;
-        transform: scale(1.03);
-    }
-
-    .birthday-day span {
-        font-size: 1.15rem;
-        line-height: 1;
-    }
-
-    .birthday-day small {
-        font-size: 1rem;
-        margin-top: 0.35rem;
-        line-height: 1;
-    }
-
-    .calendar-caption {
-        text-align: center;
-        color: #831843;
-        margin-top: 1.3rem;
-        font-weight: 900;
-        font-size: 1rem;
-        line-height: 1.45;
     }
 
     .typewriter-box {
@@ -691,9 +703,11 @@ with tab_home:
         )
 
         st.write("")
-        st.markdown(
+
+        components.html(
             create_august_calendar_html(next_birthday.year),
-            unsafe_allow_html=True,
+            height=620,
+            scrolling=False,
         )
 
     st.divider()
