@@ -57,8 +57,11 @@ def days_between(start_date, end_date=None):
 
 
 def create_august_calendar_html():
+    if year is None:
+    year = date.today().year
+
     cal = calendar.Calendar(firstweekday=6)  # Sunday first
-    month_days = cal.monthdayscalendar(date.today().year, BIRTHDAY_MONTH)
+    month_days = cal.monthdayscalendar(year, BIRTHDAY_MONTH)
 
     html = """
     <div class="calendar-card">
