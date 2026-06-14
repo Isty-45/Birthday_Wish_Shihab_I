@@ -592,11 +592,12 @@ Some dates do not need to be repeated often to remain special.
 
 2 March 2021 was one of those dates — the first meeting, the first memory, and the beginning of a story that time did not completely erase.
 
-Then came 12 December 2022, the day you left the country for the USA. Since then, life has placed distance, new routines, new people, and a new world around you. Now you are building your future at the University of Georgia, and that journey deserves respect.
+Then came 12 December 2022, the day you left the country for the USA. Since then, life has placed distance, new routines, new people, and a new world around you. Now you are working hard and building your future there, and that journey deserves respect.
 
 On this birthday, the wish is simple but sincere:
 
 May you never feel alone in the path you are walking.
+May your dream will come true, In Sha Allah.
 May your efforts become achievements.
 May your tired days end with peace.
 May your new year bring good people, good health, good grades, and good memories.
@@ -620,9 +621,7 @@ st.markdown(
             Today is all about celebrating you and the beautiful journey you are building.
         </div>
         <br>
-        <span class="cute-badge">🎈 August 26</span>
-        <span class="cute-badge">✈️ USA Journey</span>
-        <span class="cute-badge">🎓 University of Georgia</span>
+        <span class="cute-badge">🎈 26th August 26</span>
         <span class="cute-badge">💌 Birthday Wishes</span>
     </div>
     """,
