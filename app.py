@@ -833,7 +833,7 @@ with tab_final:
     if "final_opened" not in st.session_state:
         st.session_state.final_opened = False
 
-    if st.button("Open the Time Capsule 💌"):
+    if st.button("Open the Capsule 💌"):
         st.session_state.final_opened = True
         st.balloons()
 
