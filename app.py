@@ -22,7 +22,7 @@ LEFT_COUNTRY_DATE = date(2022, 12, 12)
 UNIVERSITY_NAME = "University of Georgia"
 COUNTRY_NAME = "USA"
 
-HOME_IMAGE_PATH = Path("assets/al_shihab.jpg")
+ASSETS_DIR = Path("assets")
 
 
 # =========================================================
@@ -40,6 +40,7 @@ st.set_page_config(
 # =========================================================
 # Helper Functions
 # =========================================================
+
 def get_next_birthday():
     today = date.today()
     birthday_this_year = date(today.year, BIRTHDAY_MONTH, BIRTHDAY_DAY)
@@ -53,12 +54,30 @@ def get_next_birthday():
 def days_between(start_date, end_date=None):
     if end_date is None:
         end_date = date.today()
+
     return (end_date - start_date).days
 
 
-def create_august_calendar_html():
+def find_home_image():
+    possible_files = [
+        ASSETS_DIR / "al_shihab.jpg",
+        ASSETS_DIR / "al_shihab.jpeg",
+        ASSETS_DIR / "al_shihab.png",
+        ASSETS_DIR / "Al_Shihab.jpg",
+        ASSETS_DIR / "Al_Shihab.jpeg",
+        ASSETS_DIR / "Al_Shihab.png",
+    ]
+
+    for file_path in possible_files:
+        if file_path.exists():
+            return file_path
+
+    return None
+
+
+def create_august_calendar_html(year=None):
     if year is None:
-    year = date.today().year
+        year = date.today().year
 
     cal = calendar.Calendar(firstweekday=6)  # Sunday first
     month_days = cal.monthdayscalendar(year, BIRTHDAY_MONTH)
@@ -71,7 +90,13 @@ def create_august_calendar_html():
         </div>
 
         <div class="calendar-grid calendar-weekdays">
-            <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
         </div>
 
         <div class="calendar-grid">
@@ -89,7 +114,11 @@ def create_august_calendar_html():
                 </div>
                 """
             else:
-                html += f'<div class="calendar-day"><span>{day}</span></div>'
+                html += f"""
+                <div class="calendar-day">
+                    <span>{day}</span>
+                </div>
+                """
 
     html += """
         </div>
@@ -118,6 +147,15 @@ def typewriter_message(message, delay=0.018):
             unsafe_allow_html=True,
         )
         time.sleep(delay)
+
+
+# =========================================================
+# Computed Values
+# =========================================================
+
+next_birthday = get_next_birthday()
+days_since_left_country = days_between(LEFT_COUNTRY_DATE)
+home_image_path = find_home_image()
 
 
 # =========================================================
@@ -373,13 +411,6 @@ st.markdown(
         margin-bottom: 1rem;
     }
 
-    .footer-note {
-        text-align: center;
-        padding: 1rem;
-        color: #831843;
-        font-weight: 800;
-    }
-
     div.stButton > button {
         border-radius: 15px;
         border: 0;
@@ -471,6 +502,13 @@ memories = [
         ),
     },
     {
+        "title": "2 March 2021 — The First Meeting",
+        "body": (
+            "That day became the beginning of a small but meaningful memory. "
+            "Even though you have not met again after that day, some moments stay quietly special."
+        ),
+    },
+    {
         "title": "The Long Gap After That Day",
         "body": (
             "After that first meeting, time moved forward in its own way. "
@@ -556,6 +594,8 @@ st.markdown(
         </div>
         <br>
         <span class="cute-badge">🎈 August 26</span>
+        <span class="cute-badge">✈️ USA Journey</span>
+        <span class="cute-badge">🎓 University of Georgia</span>
         <span class="cute-badge">💌 Birthday Wishes</span>
     </div>
     """,
@@ -584,25 +624,29 @@ tab_home, tab_memory, tab_surprise, tab_wish, tab_final = st.tabs(
 
 with tab_home:
     left_col, right_col = st.columns([1.05, 1], gap="large")
+
     with left_col:
         st.markdown(
             """
             <div class="glass-card">
                 <div class="section-title">📸 Birthday Home Photo</div>
                 <div class="small-note">
-                    This photo is loaded directly from the app folder. 
-                    Save the image as <b>assets/al_shihab.jpg</b>.
+                    A special photo for a special birthday moment.
                 </div>
             </div>
             """,
             unsafe_allow_html=True,
-         )
+        )
 
         st.write("")
 
-        if HOME_IMAGE_PATH.exists():
+        if home_image_path is not None:
             st.markdown('<div class="image-frame">', unsafe_allow_html=True)
-            st.image(str(HOME_IMAGE_PATH), caption=f"Happy Birthday, {PERSON_NAME} 🎂", use_container_width=True)
+            st.image(
+                str(home_image_path),
+                caption=f"Happy Birthday, {PERSON_NAME} 🎂",
+                use_container_width=True,
+            )
             st.markdown("</div>", unsafe_allow_html=True)
         else:
             st.markdown(
@@ -610,8 +654,11 @@ with tab_home:
                 <div class="placeholder-photo">
                     <div class="placeholder-initials">AS</div>
                     <div><b>Photo will appear here</b></div>
+                    <div style="margin-top:0.35rem;">
+                        Save the image inside the <b>assets</b> folder as <b>al_shihab.jpg</b>
+                    </div>
                 </div>
-                  """,
+                """,
                 unsafe_allow_html=True,
             )
 
@@ -621,7 +668,7 @@ with tab_home:
             <div class="glass-card">
                 <div class="section-title">🗓️ Birthday Calendar</div>
                 <div class="small-note">
-                    August is your birthday month, SHIHAB.
+                    August is his birthday month, and 26 August is marked specially.
                 </div>
             </div>
             """,
@@ -629,7 +676,10 @@ with tab_home:
         )
 
         st.write("")
-        st.markdown(create_august_calendar_html(next_birthday.year), unsafe_allow_html=True)
+        st.markdown(
+            create_august_calendar_html(next_birthday.year),
+            unsafe_allow_html=True,
+        )
 
     st.divider()
 
@@ -646,6 +696,7 @@ with tab_home:
 
     with c4:
         st.metric("University", "Georgia")
+
 
 # =========================================================
 # Memory Album
@@ -707,12 +758,20 @@ with tab_surprise:
 
     birthday_lines = [
         "I hope your birthday feels soft, peaceful, and full of tiny happy moments.",
-        "I wish your birthday brings you peace, confidence, and a heart full of happiness.",
-        "I hope this new year gives you more success than stress and more smiles than worries.",
-        "May your life in the USA become brighter, easier, and full of meaningful achievements.",
-        "I wish you strength for your goals and calmness for your heart.",
+        "May your day be as bright as your smile and as sweet as your favorite dessert.",
+        "I wish your heart feels lighter today, because birthdays should feel warm and special.",
+        "May the USA chapter of your life become more beautiful, successful, and full of good surprises.",
+        "I hope this birthday gives you a reason to smile even on a busy university day.",
         "May your dreams come closer, your worries become smaller, and your happiness grow bigger.",
-        "May August 26 remind you that you are special and warmly remembered.",
+        "I wish you good grades, good friends, peaceful nights, and a heart full of confidence.",
+        "May August 26 bring you cake, smiles, blessings, and a little reminder that you are special.",
+        "I hope your birthday feels like a warm hug from all the good memories around you.",
+        "May this new year of your life be kinder, brighter, and more successful than the last one.",
+        "I wish your coffee tastes better, your assignments feel easier, and your birthday feels extra cute today.",
+        "May your birthday be full of sweet notifications, warm wishes, and one very happy heart.",
+        "I hope today treats you gently and gives you a reason to smile without even trying.",
+        "May your birthday feel like a soft little pause from everything stressful.",
+        "I wish you a birthday full of cake-level sweetness and star-level brightness.",
     ]
 
     if st.button("Generate a Birthday Line 💌"):
@@ -767,12 +826,3 @@ with tab_final:
 
     if st.session_state.final_opened:
         typewriter_message(final_letter)
-
-    st.markdown(
-        """
-        <div class="footer-note">
-            Made with Streamlit and a warm birthday wish 🎂✨
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
