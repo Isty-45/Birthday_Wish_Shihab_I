@@ -40,6 +40,21 @@ st.set_page_config(
 # =========================================================
 # Helper Functions
 # =========================================================
+def get_next_birthday():
+    today = date.today()
+    birthday_this_year = date(today.year, BIRTHDAY_MONTH, BIRTHDAY_DAY)
+
+    if birthday_this_year < today:
+        return date(today.year + 1, BIRTHDAY_MONTH, BIRTHDAY_DAY)
+
+    return birthday_this_year
+
+
+def days_between(start_date, end_date=None):
+    if end_date is None:
+        end_date = date.today()
+    return (end_date - start_date).days
+
 
 def create_august_calendar_html():
     cal = calendar.Calendar(firstweekday=6)  # Sunday first
