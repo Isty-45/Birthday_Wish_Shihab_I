@@ -82,14 +82,17 @@ def create_august_calendar_html(year=None):
     cal = calendar.Calendar(firstweekday=6)  # Sunday first
     month_days = cal.monthdayscalendar(year, BIRTHDAY_MONTH)
 
-    html = """
-    <div class="calendar-card">
-        <div class="calendar-header">
-            <div class="calendar-month">August</div>
-            <div class="calendar-year">Birthday Month</div>
+    html = f"""
+    <div class="birthday-calendar-card">
+        <div class="birthday-calendar-header">
+            <div>
+                <div class="birthday-calendar-month">August</div>
+                <div class="birthday-calendar-subtitle">{year} Birthday Month</div>
+            </div>
+            <div class="birthday-calendar-pill">26 August 🎂</div>
         </div>
 
-        <div class="calendar-grid calendar-weekdays">
+        <div class="birthday-calendar-weekdays">
             <div>Sun</div>
             <div>Mon</div>
             <div>Tue</div>
@@ -99,23 +102,23 @@ def create_august_calendar_html(year=None):
             <div>Sat</div>
         </div>
 
-        <div class="calendar-grid">
+        <div class="birthday-calendar-days">
     """
 
     for week in month_days:
         for day in week:
             if day == 0:
-                html += '<div class="calendar-day empty"></div>'
+                html += '<div class="birthday-calendar-day birthday-calendar-empty"></div>'
             elif day == BIRTHDAY_DAY:
                 html += f"""
-                <div class="calendar-day birthday-day">
+                <div class="birthday-calendar-day birthday-calendar-highlight">
                     <span>{day}</span>
-                    <small>🎂</small>
+                    <small>Happy Birthday</small>
                 </div>
                 """
             else:
                 html += f"""
-                <div class="calendar-day">
+                <div class="birthday-calendar-day">
                     <span>{day}</span>
                 </div>
                 """
@@ -123,7 +126,7 @@ def create_august_calendar_html(year=None):
     html += """
         </div>
 
-        <div class="calendar-caption">
+        <div class="birthday-calendar-caption">
             26 August is marked with extra love, because this day belongs to Al Shihab 🎈
         </div>
     </div>
@@ -304,86 +307,115 @@ st.markdown(
         font-weight: 500;
     }
 
-    .calendar-card {
-        background: linear-gradient(135deg, #ffffff, #fff1f2);
+    .birthday-calendar-card {
+        background: linear-gradient(135deg, #ffffff 0%, #fff1f2 55%, #fdf2f8 100%);
         border-radius: 28px;
-        padding: 1.2rem;
-        border: 1px solid rgba(244, 63, 94, 0.18);
-        box-shadow: 0 14px 32px rgba(225, 29, 72, 0.10);
+        padding: 1.25rem;
+        border: 1px solid rgba(244, 63, 94, 0.20);
+        box-shadow: 0 16px 38px rgba(225, 29, 72, 0.12);
+        width: 100%;
     }
 
-    .calendar-header {
+    .birthday-calendar-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 0.9rem;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
     }
 
-    .calendar-month {
+    .birthday-calendar-month {
         color: #9f1239;
         font-weight: 900;
-        font-size: 1.55rem;
+        font-size: 1.65rem;
+        line-height: 1.1;
     }
 
-    .calendar-year {
-        background: #ffe4e6;
-        color: #9f1239;
-        padding: 0.35rem 0.7rem;
+    .birthday-calendar-subtitle {
+        color: #64748b;
+        font-size: 0.92rem;
+        font-weight: 700;
+        margin-top: 0.2rem;
+    }
+
+    .birthday-calendar-pill {
+        background: linear-gradient(135deg, #fb7185, #db2777);
+        color: white;
+        padding: 0.45rem 0.8rem;
         border-radius: 999px;
-        font-weight: 800;
-        font-size: 0.86rem;
+        font-size: 0.82rem;
+        font-weight: 900;
+        white-space: nowrap;
+        box-shadow: 0 8px 18px rgba(219, 39, 119, 0.25);
     }
 
-    .calendar-grid {
+    .birthday-calendar-weekdays {
         display: grid;
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(7, minmax(0, 1fr));
         gap: 0.45rem;
+        margin-bottom: 0.5rem;
+        text-align: center;
     }
 
-    .calendar-weekdays {
+    .birthday-calendar-weekdays div {
         color: #9f1239;
         font-weight: 900;
         font-size: 0.82rem;
-        text-align: center;
-        margin-bottom: 0.45rem;
     }
 
-    .calendar-day {
-        min-height: 54px;
-        border-radius: 15px;
+    .birthday-calendar-days {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 0.45rem;
+    }
+
+    .birthday-calendar-day {
+        min-height: 58px;
+        border-radius: 16px;
         background: #ffffff;
-        border: 1px solid rgba(244, 114, 182, 0.16);
+        border: 1px solid rgba(244, 114, 182, 0.18);
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
         color: #475569;
-        font-weight: 800;
+        font-weight: 900;
+        box-shadow: 0 5px 13px rgba(15, 23, 42, 0.04);
     }
 
-    .calendar-day.empty {
+    .birthday-calendar-empty {
         background: transparent;
+        border: none;
+        box-shadow: none;
+    }
+
+    .birthday-calendar-highlight {
+        background: linear-gradient(135deg, #fb7185, #db2777);
+        color: white;
+        transform: scale(1.08);
+        box-shadow: 0 12px 28px rgba(219, 39, 119, 0.35);
         border: none;
     }
 
-    .birthday-day {
-        background: linear-gradient(135deg, #fb7185, #db2777);
-        color: white;
-        transform: scale(1.06);
-        box-shadow: 0 10px 25px rgba(219, 39, 119, 0.30);
+    .birthday-calendar-highlight span {
+        font-size: 1.2rem;
+        line-height: 1;
     }
 
-    .birthday-day small {
-        font-size: 1rem;
-        margin-top: 0.1rem;
+    .birthday-calendar-highlight small {
+        font-size: 0.62rem;
+        margin-top: 0.25rem;
+        font-weight: 800;
+        opacity: 0.95;
     }
 
-    .calendar-caption {
+    .birthday-calendar-caption {
         text-align: center;
         color: #831843;
-        margin-top: 0.9rem;
+        margin-top: 1rem;
         font-weight: 800;
         font-size: 0.95rem;
+        line-height: 1.45;
     }
 
     .typewriter-box {
@@ -550,12 +582,6 @@ May your dreams become closer.
 May your heart always find reasons to smile.
 
 Happy Birthday once again. I hope this day makes you feel special, because you really are.
-"""
-
-short_wish = f"""
-Happy Birthday, {PERSON_NAME}! 🎂  
-Wishing you happiness, peace, success, good health, and a beautiful year ahead.  
-May your life at the University of Georgia bring you growth, confidence, and many proud moments.
 """
 
 final_letter = f"""
@@ -790,21 +816,6 @@ with tab_wish:
         <div class="wish-card">
             <div class="wish-text">
                 {birthday_wish}
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    st.divider()
-
-    st.markdown("## ✨ Short Wish Version")
-
-    st.markdown(
-        f"""
-        <div class="wish-card">
-            <div class="wish-text">
-                {short_wish}
             </div>
         </div>
         """,
