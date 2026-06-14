@@ -22,7 +22,7 @@ LEFT_COUNTRY_DATE = date(2022, 12, 12)
 UNIVERSITY_NAME = "University of Georgia"
 COUNTRY_NAME = "USA"
 
-HOME_IMAGE_PATH = Path("assets/al_shihab.jpg")
+ASSETS_DIR = Path("assets")
 
 
 # =========================================================
@@ -54,7 +54,25 @@ def get_next_birthday():
 def days_between(start_date, end_date=None):
     if end_date is None:
         end_date = date.today()
+
     return (end_date - start_date).days
+
+
+def find_home_image():
+    possible_files = [
+        ASSETS_DIR / "al_shihab.jpg",
+        ASSETS_DIR / "al_shihab.jpeg",
+        ASSETS_DIR / "al_shihab.png",
+        ASSETS_DIR / "Al_Shihab.jpg",
+        ASSETS_DIR / "Al_Shihab.jpeg",
+        ASSETS_DIR / "Al_Shihab.png",
+    ]
+
+    for file_path in possible_files:
+        if file_path.exists():
+            return file_path
+
+    return None
 
 
 def create_august_calendar_html(year):
@@ -67,16 +85,24 @@ def create_august_calendar_html(year):
             <div class="calendar-month">August</div>
             <div class="calendar-year">Birthday Month</div>
         </div>
-        <div class="calendar-grid calendar-weekdays">
-            <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+
+        <div class="calendar-weekday-grid">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
         </div>
-        <div class="calendar-grid">
+
+        <div class="calendar-day-grid">
     """
 
     for week in month_days:
         for day in week:
             if day == 0:
-                html += '<div class="calendar-day empty"></div>'
+                html += '<div class="calendar-day empty-day"></div>'
             elif day == BIRTHDAY_DAY:
                 html += f"""
                 <div class="calendar-day birthday-day">
@@ -85,10 +111,15 @@ def create_august_calendar_html(year):
                 </div>
                 """
             else:
-                html += f'<div class="calendar-day"><span>{day}</span></div>'
+                html += f"""
+                <div class="calendar-day">
+                    <span>{day}</span>
+                </div>
+                """
 
     html += """
         </div>
+
         <div class="calendar-caption">
             August 26 is marked because this day belongs to Al Shihab 🎈
         </div>
@@ -115,31 +146,13 @@ def typewriter_message(message, delay=0.018):
         time.sleep(delay)
 
 
-def birthday_scan():
-    scan_text = st.empty()
-    progress = st.progress(0)
+# =========================================================
+# Computed Values
+# =========================================================
 
-    scan_steps = [
-        "Reading birthday energy...",
-        "Finding the cutest birthday signal...",
-        "Checking smile probability...",
-        "Scanning memories from March 2, 2021...",
-        "Measuring long-distance birthday warmth...",
-        "Preparing birthday result...",
-    ]
-
-    for i in range(101):
-        progress.progress(i)
-        scan_text.write(random.choice(scan_steps))
-        time.sleep(0.012)
-
-    scan_text.success("Birthday scan completed successfully 🎉")
-
-
-def show_metric_progress(label, value, emoji):
-    st.markdown(f"**{emoji} {label}**")
-    st.progress(value)
-    st.caption(f"{value}%")
+next_birthday = get_next_birthday()
+days_since_left_country = days_between(LEFT_COUNTRY_DATE)
+home_image_path = find_home_image()
 
 
 # =========================================================
@@ -225,7 +238,7 @@ st.markdown(
 
     .image-frame {
         background: linear-gradient(135deg, #ffffff, #fff1f2);
-        padding: 0.7rem;
+        padding: 0.75rem;
         border-radius: 28px;
         border: 1px solid rgba(244, 63, 94, 0.16);
         box-shadow: 0 16px 35px rgba(225, 29, 72, 0.12);
@@ -248,27 +261,6 @@ st.markdown(
         font-size: 4rem;
         font-weight: 900;
         margin-bottom: 0.4rem;
-    }
-
-    .timeline-card {
-        background: #ffffff;
-        border-left: 7px solid #fb7185;
-        border-radius: 20px;
-        padding: 1rem 1.15rem;
-        box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
-        margin-bottom: 0.85rem;
-    }
-
-    .timeline-date {
-        font-weight: 900;
-        color: #9f1239;
-        font-size: 1.03rem;
-    }
-
-    .timeline-text {
-        color: #475569;
-        line-height: 1.55;
-        margin-top: 0.25rem;
     }
 
     .memory-card {
@@ -309,108 +301,110 @@ st.markdown(
         font-weight: 500;
     }
 
+    /* =====================================================
+       Calendar Styling
+       ===================================================== */
+
     .calendar-card {
-        background: linear-gradient(135deg, #ffffff, #fff1f2);
-        border-radius: 28px;
-        padding: 1.2rem;
-        border: 1px solid rgba(244, 63, 94, 0.18);
-        box-shadow: 0 14px 32px rgba(225, 29, 72, 0.10);
+        background: linear-gradient(135deg, #ffffff 0%, #fff1f2 100%);
+        border-radius: 30px;
+        padding: 1.5rem;
+        border: 1px solid rgba(244, 63, 94, 0.22);
+        box-shadow: 0 18px 42px rgba(225, 29, 72, 0.10);
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .calendar-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 0.9rem;
+        margin-bottom: 1.35rem;
     }
 
     .calendar-month {
         color: #9f1239;
         font-weight: 900;
-        font-size: 1.55rem;
+        font-size: 1.75rem;
+        line-height: 1;
     }
 
     .calendar-year {
         background: #ffe4e6;
         color: #9f1239;
-        padding: 0.35rem 0.7rem;
+        padding: 0.55rem 0.95rem;
         border-radius: 999px;
-        font-weight: 800;
-        font-size: 0.86rem;
-    }
-
-    .calendar-grid {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 0.45rem;
-    }
-
-    .calendar-weekdays {
-        color: #9f1239;
         font-weight: 900;
-        font-size: 0.82rem;
+        font-size: 0.92rem;
+        white-space: nowrap;
+    }
+
+    .calendar-weekday-grid {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 0.55rem;
+        margin-bottom: 0.75rem;
         text-align: center;
-        margin-bottom: 0.45rem;
+    }
+
+    .calendar-weekday-grid div {
+        color: #9f1239;
+        font-size: 0.92rem;
+        font-weight: 900;
+    }
+
+    .calendar-day-grid {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 0.55rem;
     }
 
     .calendar-day {
-        min-height: 54px;
-        border-radius: 15px;
+        min-height: 66px;
+        border-radius: 17px;
         background: #ffffff;
-        border: 1px solid rgba(244, 114, 182, 0.16);
+        border: 1px solid rgba(244, 114, 182, 0.18);
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        color: #475569;
-        font-weight: 800;
+        color: #334155;
+        font-weight: 900;
+        font-size: 1.04rem;
+        box-sizing: border-box;
     }
 
-    .calendar-day.empty {
+    .empty-day {
         background: transparent;
         border: none;
     }
 
     .birthday-day {
         background: linear-gradient(135deg, #fb7185, #db2777);
-        color: white;
-        transform: scale(1.06);
-        box-shadow: 0 10px 25px rgba(219, 39, 119, 0.30);
+        color: #ffffff;
+        box-shadow: 0 14px 30px rgba(219, 39, 119, 0.35);
+        border: none;
+        transform: scale(1.03);
+    }
+
+    .birthday-day span {
+        font-size: 1.15rem;
+        line-height: 1;
     }
 
     .birthday-day small {
         font-size: 1rem;
-        margin-top: 0.1rem;
+        margin-top: 0.35rem;
+        line-height: 1;
     }
 
     .calendar-caption {
         text-align: center;
         color: #831843;
-        margin-top: 0.9rem;
-        font-weight: 800;
-        font-size: 0.95rem;
-    }
-
-    .capsule-box {
-        background: radial-gradient(circle at top left, #ffe4e6, #ffffff 42%, #fdf2f8 100%);
-        border-radius: 30px;
-        padding: 1.7rem;
-        border: 1px solid rgba(244, 63, 94, 0.20);
-        box-shadow: 0 18px 45px rgba(225, 29, 72, 0.13);
-        text-align: center;
-    }
-
-    .capsule-title {
-        color: #9f1239;
-        font-size: 1.8rem;
+        margin-top: 1.3rem;
         font-weight: 900;
-        margin-bottom: 0.5rem;
-    }
-
-    .capsule-subtitle {
-        color: #64748b;
-        line-height: 1.6;
-        margin-bottom: 1rem;
+        font-size: 1rem;
+        line-height: 1.45;
     }
 
     .typewriter-box {
@@ -436,13 +430,6 @@ st.markdown(
         text-align: center;
         border: 1px solid rgba(244, 63, 94, 0.15);
         margin-bottom: 1rem;
-    }
-
-    .footer-note {
-        text-align: center;
-        padding: 1rem;
-        color: #831843;
-        font-weight: 800;
     }
 
     div.stButton > button {
@@ -511,50 +498,62 @@ st.markdown(
 
 
 # =========================================================
-# Fixed Personalized Data
+# Personalized Messages
 # =========================================================
-
-today = date.today()
-next_birthday = get_next_birthday()
-days_to_birthday = (next_birthday - today).days
-days_since_first_met = days_between(FIRST_MET_DATE)
-days_since_left_country = days_between(LEFT_COUNTRY_DATE)
 
 memories = [
     {
+        "title": "The Smile Memory",
+        "body": (
+            "Some people make ordinary moments feel brighter. "
+            "Your smile is one of those little things that can change the mood of a whole day."
+        ),
+    },
+    {
+        "title": "The Kindness Memory",
+        "body": (
+            "The way you care, listen, and stay thoughtful makes you different in the best possible way."
+        ),
+    },
+    {
+        "title": "The Favorite Person Energy",
+        "body": (
+            "You have a calm, warm, and rare kind of presence. "
+            "That is something worth celebrating today."
+        ),
+    },
+    {
         "title": "2 March 2021 — The First Meeting",
         "body": (
-            "That day became the beginning of a small but meaningful chapter. "
-            "Sometimes one meeting is enough to stay remembered for years."
+            "That day became the beginning of a small but meaningful memory. "
+            "Even though you have not met again after that day, some moments stay quietly special."
         ),
     },
     {
         "title": "The Long Gap After That Day",
         "body": (
-            "After 2 March 2021, you have not seen each other again till now. "
-            "Still, some people remain special not because they are always nearby, "
-            "but because their presence leaves a quiet place in memory."
+            "After that first meeting, time moved forward in its own way. "
+            "There were no more meetings, but the memory did not completely fade."
         ),
     },
     {
-        "title": "12 December 2022 — A New Chapter in the USA",
+        "title": "12 December 2022 — A New Chapter",
         "body": (
-            "On 12 December 2022, he left the country for the USA. "
-            "That day marked a big change, a new journey, and a brave step toward his future."
+            "On 12 December 2022, you left the country for the USA. "
+            "That was not just a journey to another place; it was the beginning of a new life chapter."
         ),
     },
     {
         "title": "University of Georgia",
         "body": (
-            f"Now he is studying at {UNIVERSITY_NAME}. "
-            "That is something to feel proud of — a journey of effort, learning, independence, and growth."
+            f"Now you are studying at {UNIVERSITY_NAME}. "
+            "That journey deserves respect, because building a future far from home takes courage, effort, and patience."
         ),
     },
     {
-        "title": "26 August — His Birthday",
+        "title": "26 August — Your Day",
         "body": (
-            "August 26 is not just another date on the calendar. "
-            "It is a day to wish him happiness, success, good health, peace, and a year full of beautiful progress."
+            "August 26 is your birthday, and today is meant to remind you that you are appreciated, remembered, and warmly wished."
         ),
     },
 ]
@@ -562,14 +561,16 @@ memories = [
 birthday_wish = f"""
 Happy Birthday, {PERSON_NAME}! 🎂
 
-Even though many days have passed since that first meeting on 2 March 2021, 
-some memories still stay quietly meaningful. Today is your day, and I hope it brings you happiness, 
-peace, confidence, and a lot of reasons to smile.
+I wish you a day full of peace, happiness, smiles, and small moments that make your heart feel light.
 
-You have already started a brave chapter far from home, studying at the University of Georgia in the USA. 
-May this new year of your life make you stronger, wiser, happier, and closer to every dream you are working for.
+You are far from home now, studying at the University of Georgia and building your own future step by step. I truly wish that this new year of your life brings you success, confidence, good health, good people, and many beautiful achievements.
 
-Wishing you a birthday as special as your journey.
+May your hard work become meaningful results.
+May your difficult days become easier.
+May your dreams become closer.
+May your heart always find reasons to smile.
+
+Happy Birthday once again. I hope this day makes you feel special, because you really are.
 """
 
 final_letter = f"""
@@ -590,7 +591,7 @@ May your new year bring good people, good health, good grades, and good memories
 May you become everything you are hoping to become.
 
 Happy Birthday, {PERSON_NAME}.
-This small page was made to remind you that your day matters, your journey matters, and you are remembered warmly.
+You are remembered warmly today.
 """
 
 
@@ -603,14 +604,14 @@ st.markdown(
     <div class="hero-box">
         <div class="hero-title">🎂 Happy Birthday, {PERSON_NAME}!</div>
         <div class="hero-subtitle">
-            A tiny personalized birthday website made with memories, distance, warmth, and a little bit of birthday magic.
-            From 2 March 2021 to today, some dates still remain special.
+            A tiny personalized birthday website made with warm wishes, sweet memories, distance, and a little bit of birthday magic.
+            Today is all about celebrating you and the beautiful journey you are building.
         </div>
         <br>
         <span class="cute-badge">🎈 August 26</span>
-        <span class="cute-badge">📍 First met: 2 March 2021</span>
-        <span class="cute-badge">✈️ USA journey: 12 December 2022</span>
+        <span class="cute-badge">✈️ USA Journey</span>
         <span class="cute-badge">🎓 University of Georgia</span>
+        <span class="cute-badge">💌 Birthday Wishes</span>
     </div>
     """,
     unsafe_allow_html=True,
@@ -645,8 +646,7 @@ with tab_home:
             <div class="glass-card">
                 <div class="section-title">📸 Birthday Home Photo</div>
                 <div class="small-note">
-                    This photo is loaded directly from the app folder. 
-                    Save the image as <b>assets/al_shihab.jpg</b>.
+                    A special photo for a special birthday moment.
                 </div>
             </div>
             """,
@@ -655,9 +655,13 @@ with tab_home:
 
         st.write("")
 
-        if HOME_IMAGE_PATH.exists():
+        if home_image_path is not None:
             st.markdown('<div class="image-frame">', unsafe_allow_html=True)
-            st.image(str(HOME_IMAGE_PATH), caption=f"Happy Birthday, {PERSON_NAME} 🎂", use_container_width=True)
+            st.image(
+                str(home_image_path),
+                caption=f"Happy Birthday, {PERSON_NAME} 🎂",
+                use_container_width=True,
+            )
             st.markdown("</div>", unsafe_allow_html=True)
         else:
             st.markdown(
@@ -665,7 +669,9 @@ with tab_home:
                 <div class="placeholder-photo">
                     <div class="placeholder-initials">AS</div>
                     <div><b>Photo will appear here</b></div>
-                    <div style="margin-top:0.35rem;">Save image as <code>assets/al_shihab.jpg</code></div>
+                    <div style="margin-top:0.35rem;">
+                        Save the image inside the <b>assets</b> folder as <b>al_shihab.jpg</b>
+                    </div>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -685,41 +691,26 @@ with tab_home:
         )
 
         st.write("")
-        st.markdown(create_august_calendar_html(next_birthday.year), unsafe_allow_html=True)
+        st.markdown(
+            create_august_calendar_html(next_birthday.year),
+            unsafe_allow_html=True,
+        )
 
     st.divider()
 
-    m1, m2, m3, m4 = st.columns(4)
+    c1, c2, c3, c4 = st.columns(4)
 
-    with m1:
+    with c1:
         st.metric("Birthday Date", "26 August")
 
-    with m2:
-        st.metric("Days Until Birthday", days_to_birthday)
+    with c2:
+        st.metric("Current Living", "USA")
 
-    with m3:
-        st.metric("Days Since First Meeting", days_since_first_met)
+    with c3:
+        st.metric("Days Living There", days_since_left_country)
 
-    with m4:
-        st.metric("Days Since USA Journey", days_since_left_country)
-
-    st.divider()
-
-    st.markdown("## 🔍 Birthday Happiness Scan")
-
-    scan_left, scan_right = st.columns([1, 1], gap="large")
-
-    with scan_left:
-        if st.button("Start Birthday Scan 🎂"):
-            birthday_scan()
-            st.balloons()
-
-    with scan_right:
-        show_metric_progress("Birthday Glow", 100, "✨")
-        show_metric_progress("Special Memory Value", 99, "💗")
-        show_metric_progress("Long-Distance Warmth", 98, "🌙")
-
-        st.success("Result: This birthday deserves a beautiful wish and a very special smile.")
+    with c4:
+        st.metric("University", "Georgia")
 
 
 # =========================================================
@@ -732,7 +723,7 @@ with tab_memory:
     st.markdown(
         """
         <div class="quote-strip">
-            Some memories are not measured by how often people meet, but by how deeply a date stays remembered.
+            Some memories are not measured by how often people meet, but by how deeply they stay remembered.
         </div>
         """,
         unsafe_allow_html=True,
@@ -749,28 +740,6 @@ with tab_memory:
             unsafe_allow_html=True,
         )
 
-    st.divider()
-
-    st.markdown("## 🧭 Small Timeline")
-
-    timeline_items = [
-        ("2 March 2021", "First meeting — the date where this memory began."),
-        ("12 December 2022", "He left the country for the USA and started a new chapter."),
-        ("Now", f"He is studying at {UNIVERSITY_NAME}."),
-        ("26 August", "His birthday — a day to wish him happiness, success, and peace."),
-    ]
-
-    for timeline_date, timeline_text in timeline_items:
-        st.markdown(
-            f"""
-            <div class="timeline-card">
-                <div class="timeline-date">{timeline_date}</div>
-                <div class="timeline-text">{timeline_text}</div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
 
 # =========================================================
 # Surprise Box
@@ -781,33 +750,43 @@ with tab_surprise:
 
     st.write(
         "Each box reveals a small birthday message. "
-        "This keeps the website interactive without needing any machine learning model."
+        "This keeps the website interactive and cute."
     )
 
     c1, c2, c3 = st.columns(3)
 
     with c1:
         if st.button("Open Box 1 🎁"):
-            st.success("Unlocked: A wish for peace, happiness, and a soft smile today.")
+            st.success("Unlocked: I wish you a peaceful heart and a happy smile today.")
 
     with c2:
         if st.button("Open Box 2 ✨"):
-            st.success("Unlocked: A proud reminder — studying far from home takes courage.")
+            st.success("Unlocked: I wish your hard work in the USA brings you beautiful success.")
 
     with c3:
         if st.button("Open Box 3 🎈"):
-            st.success("Unlocked: May this birthday bring him closer to every dream he is working for.")
+            st.success("Unlocked: I wish this birthday becomes the beginning of an amazing year for you.")
 
     st.divider()
 
     st.markdown("## 🎲 Random Birthday Line")
 
     birthday_lines = [
-        "A birthday is not only about age; it is about the journey that shaped the person.",
-        "Distance changes location, not the value of a meaningful memory.",
-        "August 26 deserves cake, smiles, peace, and a little extra happiness.",
-        "From Bangladesh to the USA, his journey is already something special.",
-        "May this year be kinder, brighter, and more successful for him.",
+        "I hope your birthday feels soft, peaceful, and full of tiny happy moments.",
+        "May your day be as bright as your smile and as sweet as your favorite dessert.",
+        "I wish your heart feels lighter today, because birthdays should feel warm and special.",
+        "May the USA chapter of your life become more beautiful, successful, and full of good surprises.",
+        "I hope this birthday gives you a reason to smile even on a busy university day.",
+        "May your dreams come closer, your worries become smaller, and your happiness grow bigger.",
+        "I wish you good grades, good friends, peaceful nights, and a heart full of confidence.",
+        "May August 26 bring you cake, smiles, blessings, and a little reminder that you are special.",
+        "I hope your birthday feels like a warm hug from all the good memories around you.",
+        "May this new year of your life be kinder, brighter, and more successful than the last one.",
+        "I wish your coffee tastes better, your assignments feel easier, and your birthday feels extra cute today.",
+        "May your birthday be full of sweet notifications, warm wishes, and one very happy heart.",
+        "I hope today treats you gently and gives you a reason to smile without even trying.",
+        "May your birthday feel like a soft little pause from everything stressful.",
+        "I wish you a birthday full of cake-level sweetness and star-level brightness.",
     ]
 
     if st.button("Generate a Birthday Line 💌"):
@@ -832,88 +811,12 @@ with tab_wish:
         unsafe_allow_html=True,
     )
 
-    st.divider()
-
-    st.markdown("## ✨ Short Wish Version")
-
-    short_wish = f"""
-    Happy Birthday, {PERSON_NAME}! 🎂  
-    Wishing you happiness, peace, success, and a beautiful year ahead. 
-    From the first meeting on 2 March 2021 to your journey at the University of Georgia, 
-    your story has become even more special. May this birthday bring you closer to your dreams.
-    """
-
-    st.markdown(
-        f"""
-        <div class="wish-card">
-            <div class="wish-text">
-                {short_wish}
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
 
 # =========================================================
 # Final Message
 # =========================================================
 
 with tab_final:
-    st.markdown("## 🌙 Final Message: A Birthday Time Capsule")
-
-    st.markdown(
-        """
-        <div class="capsule-box">
-            <div class="capsule-title">💌 A Message Across Time and Distance</div>
-            <div class="capsule-subtitle">
-                This final section works like a small digital time capsule. 
-                It connects the first meeting, the USA journey, the birthday date, and one sincere message.
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    st.write("")
-
-    t1, t2, t3 = st.columns(3)
-
-    with t1:
-        st.markdown(
-            """
-            <div class="timeline-card">
-                <div class="timeline-date">Memory Key 1</div>
-                <div class="timeline-text">2 March 2021<br>First meeting</div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-    with t2:
-        st.markdown(
-            """
-            <div class="timeline-card">
-                <div class="timeline-date">Memory Key 2</div>
-                <div class="timeline-text">12 December 2022<br>USA journey</div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-    with t3:
-        st.markdown(
-            """
-            <div class="timeline-card">
-                <div class="timeline-date">Memory Key 3</div>
-                <div class="timeline-text">26 August<br>Birthday</div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-    st.divider()
-
     if "final_opened" not in st.session_state:
         st.session_state.final_opened = False
 
@@ -923,14 +826,3 @@ with tab_final:
 
     if st.session_state.final_opened:
         typewriter_message(final_letter)
-    else:
-        st.info("Click the button above to open the final birthday message.")
-
-    st.markdown(
-        """
-        <div class="footer-note">
-            Made with Streamlit, memories, distance, and a warm birthday wish 🎂✨
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
