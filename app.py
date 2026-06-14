@@ -693,10 +693,12 @@ with tab_surprise:
     st.markdown("## 🎲 Random Birthday Line")
 
     birthday_lines = [
+        "I hope your birthday feels soft, peaceful, and full of tiny happy moments.",
         "I wish your birthday brings you peace, confidence, and a heart full of happiness.",
         "I hope this new year gives you more success than stress and more smiles than worries.",
         "May your life in the USA become brighter, easier, and full of meaningful achievements.",
         "I wish you strength for your goals and calmness for your heart.",
+        "May your dreams come closer, your worries become smaller, and your happiness grow bigger.",
         "May August 26 remind you that you are special and warmly remembered.",
     ]
 
