@@ -453,13 +453,6 @@ memories = [
         ),
     },
     {
-        "title": "2 March 2021 — The First Meeting",
-        "body": (
-            "That day became the beginning of a small but meaningful memory. "
-            "Even though you have not met again after that day, some moments stay quietly special."
-        ),
-    },
-    {
         "title": "The Long Gap After That Day",
         "body": (
             "After that first meeting, time moved forward in its own way. "
@@ -512,17 +505,21 @@ May your life at the University of Georgia bring you growth, confidence, and man
 final_letter = f"""
 Dear {PERSON_NAME},
 
-Happy Birthday.
+Some dates do not need to be repeated often to remain special.
 
-Today, I just want to wish you a life filled with peace, success, and happiness. You are far away now, living a new chapter in the USA and studying at the University of Georgia. That journey is not always easy, but I hope every step you take brings you closer to the future you dream of.
+2 March 2021 was one of those dates — the first meeting, the first memory, and the beginning of a story that time did not completely erase.
 
-I wish you strength for the difficult days, patience for the uncertain days, and joy for the beautiful days waiting for you.
+Then came 12 December 2022, the day you left the country for the USA. Since then, life has placed distance, new routines, new people, and a new world around you. Now you are building your future at the University of Georgia, and that journey deserves respect.
 
-May this birthday bring you good health, good luck, good grades, good friends, and a heart full of calmness. May you keep growing, keep smiling, and keep becoming the person you are meant to be.
+On this birthday, the wish is simple but sincere:
 
-Even from a distance, I hope this small birthday page makes you smile for a moment.
+May you never feel alone in the path you are walking.
+May your efforts become achievements.
+May your tired days end with peace.
+May your new year bring good people, good health, good grades, and good memories.
+May you become everything you are hoping to become.
 
-Happy Birthday, Al Shihab.
+Happy Birthday, {PERSON_NAME}.
 You are remembered warmly today.
 """
 
@@ -541,8 +538,6 @@ st.markdown(
         </div>
         <br>
         <span class="cute-badge">🎈 August 26</span>
-        <span class="cute-badge">✈️ USA Journey</span>
-        <span class="cute-badge">🎓 University of Georgia</span>
         <span class="cute-badge">💌 Birthday Wishes</span>
     </div>
     """,
@@ -573,12 +568,28 @@ with tab_home:
     left_col, right_col = st.columns([1.05, 1], gap="large")
 
     with left_col:
+        st.markdown(
+            """
+            <div class="glass-card">
+                <div class="section-title">📸 Birthday Home Photo</div>
+                <div class="small-note">
+                    A special photo for a special birthday moment.
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        st.write("")
+
         if HOME_IMAGE_PATH.exists():
+            st.markdown('<div class="image-frame">', unsafe_allow_html=True)
             st.image(
                 str(HOME_IMAGE_PATH),
                 caption=f"Happy Birthday, {PERSON_NAME} 🎂",
                 use_container_width=True,
             )
+            st.markdown("</div>", unsafe_allow_html=True)
         else:
             st.markdown(
                 """
@@ -592,21 +603,36 @@ with tab_home:
             )
 
     with right_col:
+        st.markdown(
+            """
+            <div class="glass-card">
+                <div class="section-title">🗓️ Birthday Calendar</div>
+                <div class="small-note">
+                    August is his birthday month, and 26 August is marked specially.
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        st.write("")
         st.markdown(create_august_calendar_html(), unsafe_allow_html=True)
 
     st.divider()
 
-    c1, c2, c3 = st.columns(3)
+    c1, c2, c3, c4 = st.columns(4)
 
     with c1:
         st.metric("Birthday Date", "26 August")
 
     with c2:
-        st.metric("Current Chapter", "USA")
+        st.metric("Current Living", "USA")
 
     with c3:
-        st.metric("University", "Georgia")
+        st.metric("Days Living There", days_since_left_country)
 
+    with c4:
+        st.metric("University", "Georgia")
 
 # =========================================================
 # Memory Album
