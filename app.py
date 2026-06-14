@@ -566,58 +566,56 @@ tab_home, tab_memory, tab_surprise, tab_wish, tab_final = st.tabs(
 
 with tab_home:
     left_col, right_col = st.columns([1.05, 1], gap="large")
-
-with left_col:
-    st.markdown(
-        """
-        <div class="glass-card">
-            <div class="section-title">📸 Birthday Home Photo</div>
-            <div class="small-note">
-                This photo is loaded directly from the app folder. 
-                Save the image as <b>assets/al_shihab.jpg</b>.
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    st.write("")
-
-    if HOME_IMAGE_PATH.exists():
-        st.markdown('<div class="image-frame">', unsafe_allow_html=True)
-        st.image(str(HOME_IMAGE_PATH), caption=f"Happy Birthday, {PERSON_NAME} 🎂", use_container_width=True)
-        st.markdown("</div>", unsafe_allow_html=True)
-    else:
+    with left_col:
         st.markdown(
             """
-            <div class="placeholder-photo">
-                <div class="placeholder-initials">AS</div>
-                <div><b>Photo will appear here</b></div>
-                <div style="margin-top:0.35rem;">Save image as <code>assets/al_shihab.jpg</code></div>
+            <div class="glass-card">
+                <div class="section-title">📸 Birthday Home Photo</div>
+                <div class="small-note">
+                    This photo is loaded directly from the app folder. 
+                    Save the image as <b>assets/al_shihab.jpg</b>.
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+         )
+
+        st.write("")
+
+        if HOME_IMAGE_PATH.exists():
+            st.markdown('<div class="image-frame">', unsafe_allow_html=True)
+            st.image(str(HOME_IMAGE_PATH), caption=f"Happy Birthday, {PERSON_NAME} 🎂", use_container_width=True)
+            st.markdown("</div>", unsafe_allow_html=True)
+        else:
+            st.markdown(
+                """
+                <div class="placeholder-photo">
+                    <div class="placeholder-initials">AS</div>
+                    <div><b>Photo will appear here</b></div>
+                </div>
+                  """,
+                unsafe_allow_html=True,
+            )
+
+    with right_col:
+        st.markdown(
+            """
+            <div class="glass-card">
+                <div class="section-title">🗓️ Birthday Calendar</div>
+                <div class="small-note">
+                    August is your birthday month, SHIHAB.
+                </div>
             </div>
             """,
             unsafe_allow_html=True,
         )
 
-with right_col:
-    st.markdown(
-        """
-        <div class="glass-card">
-            <div class="section-title">🗓️ Birthday Calendar</div>
-            <div class="small-note">
-                August is his birthday month, and 26 August is marked specially.
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+        st.write("")
+        st.markdown(create_august_calendar_html(next_birthday.year), unsafe_allow_html=True)
 
-    st.write("")
-    st.markdown(create_august_calendar_html(next_birthday.year), unsafe_allow_html=True)
+    st.divider()
 
-st.divider()
-
-c1, c2, c3, c4 = st.columns(4)
+    c1, c2, c3, c4 = st.columns(4)
 
     with c1:
         st.metric("Birthday Date", "26 August")
