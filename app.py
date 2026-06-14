@@ -237,7 +237,7 @@ def create_august_calendar_html(year):
             </div>
 
             <div class="calendar-caption">
-                August 26 is marked because this day belongs to Al Shihab 🎈
+                This day belongs to AS 🎈
             </div>
         </div>
     </body>
@@ -617,11 +617,11 @@ st.markdown(
     <div class="hero-box">
         <div class="hero-title">🎂 Happy Birthday, {PERSON_NAME}!</div>
         <div class="hero-subtitle">
-            A tiny personalized birthday website made with warm wishes, sweet memories, distance, and a little bit of birthday magic.
+            A tiny personalized birthday website made with warm wishes, sweet memories, and a little bit of birthday magic.
             Today is all about celebrating you and the beautiful journey you are building.
         </div>
         <br>
-        <span class="cute-badge">🎈 26th August 26</span>
+        <span class="cute-badge">🎈 26th August 2026</span>
         <span class="cute-badge">💌 Birthday Wishes</span>
     </div>
     """,
@@ -694,7 +694,7 @@ with tab_home:
             <div class="glass-card">
                 <div class="section-title">🗓️ Birthday Calendar</div>
                 <div class="small-note">
-                    August is his birthday month, and 26 August is marked specially.
+                    August is your birthday month, and 26th August is marked specially.
                 </div>
             </div>
             """,
