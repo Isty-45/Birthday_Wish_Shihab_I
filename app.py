@@ -524,10 +524,10 @@ st.markdown(
 
 memories = [
     {
-        "title": "The First Memory",
+        "title": "2nd March 2021 — The First Meeting",
         "body": (
-            "Some people make ordinary moments feel brighter. "
-            "That first appearance of yours stays with me, a simple memory that never fades."
+            "That day became the beginning of a small but meaningful memory. "
+            "Some moments stay quietly special."
         ),
     },
     {
@@ -544,10 +544,10 @@ memories = [
         ),
     },
     {
-        "title": "2 March 2021 — The First Meeting",
+        "title": "The First Memory",
         "body": (
-            "That day became the beginning of a small but meaningful memory. "
-            "Some moments stay quietly special."
+           "Some people make ordinary moments feel brighter. "
+           "That first appearance of yours stays with me, a simple memory that never fades."
         ),
     },
     {
