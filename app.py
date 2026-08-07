@@ -61,6 +61,7 @@ def days_between(start_date, end_date=None):
 
 def find_home_image():
     possible_files = [
+        ASSETS_DIR / "al_shihab.jpg.jpeg",
         ASSETS_DIR / "al_shihab.jpg",
         ASSETS_DIR / "al_shihab.jpeg",
         ASSETS_DIR / "al_shihab.png",
@@ -93,11 +94,11 @@ def create_august_calendar_html(year):
             }
 
             .calendar-card {
-                background: linear-gradient(135deg, #ffffff 0%, #fff1f2 100%);
+                background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
                 border-radius: 30px;
                 padding: 24px;
-                border: 1px solid rgba(244, 63, 94, 0.22);
-                box-shadow: 0 18px 42px rgba(225, 29, 72, 0.10);
+                border: 1px solid rgba(37, 99, 235, 0.24);
+                box-shadow: 0 18px 42px rgba(37, 99, 235, 0.14);
                 box-sizing: border-box;
                 width: 100%;
             }
@@ -110,15 +111,15 @@ def create_august_calendar_html(year):
             }
 
             .calendar-month {
-                color: #9f1239;
+                color: #1e3a8a;
                 font-weight: 900;
                 font-size: 30px;
                 line-height: 1;
             }
 
             .calendar-year {
-                background: #ffe4e6;
-                color: #9f1239;
+                background: #dbeafe;
+                color: #1e40af;
                 padding: 10px 18px;
                 border-radius: 999px;
                 font-weight: 900;
@@ -135,7 +136,7 @@ def create_august_calendar_html(year):
             }
 
             .calendar-weekday-grid div {
-                color: #9f1239;
+                color: #1d4ed8;
                 font-size: 15px;
                 font-weight: 900;
             }
@@ -150,7 +151,7 @@ def create_august_calendar_html(year):
                 height: 66px;
                 border-radius: 17px;
                 background: #ffffff;
-                border: 1px solid rgba(244, 114, 182, 0.18);
+                border: 1px solid rgba(37, 99, 235, 0.18);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -167,9 +168,9 @@ def create_august_calendar_html(year):
             }
 
             .birthday-day {
-                background: linear-gradient(135deg, #fb7185, #db2777);
+                background: linear-gradient(135deg, #38bdf8, #2563eb);
                 color: #ffffff;
-                box-shadow: 0 14px 30px rgba(219, 39, 119, 0.35);
+                box-shadow: 0 14px 30px rgba(37, 99, 235, 0.36);
                 border: none;
                 transform: scale(1.03);
             }
@@ -187,7 +188,7 @@ def create_august_calendar_html(year):
 
             .calendar-caption {
                 text-align: center;
-                color: #831843;
+                color: #1e3a8a;
                 margin-top: 24px;
                 font-weight: 900;
                 font-size: 17px;
@@ -287,11 +288,11 @@ st.markdown(
     }
 
     .hero-box {
-        background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 35%, #fdf2f8 100%);
+        background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 45%, #e0f2fe 100%);
         border-radius: 30px;
         padding: 2.2rem;
-        border: 1px solid rgba(244, 114, 182, 0.25);
-        box-shadow: 0 18px 55px rgba(244, 114, 182, 0.18);
+        border: 1px solid rgba(37, 99, 235, 0.25);
+        box-shadow: 0 18px 55px rgba(37, 99, 235, 0.17);
         margin-bottom: 1.2rem;
         position: relative;
         overflow: hidden;
@@ -303,28 +304,28 @@ st.markdown(
         font-size: 8rem;
         right: 2rem;
         top: 0.6rem;
-        opacity: 0.16;
+        opacity: 0.14;
     }
 
     .hero-title {
         font-size: 3.1rem;
         font-weight: 900;
-        color: #9f1239;
+        color: #1e3a8a;
         line-height: 1.08;
         margin-bottom: 0.6rem;
     }
 
     .hero-subtitle {
         font-size: 1.13rem;
-        color: #831843;
+        color: #1e40af;
         line-height: 1.65;
         max-width: 900px;
     }
 
     .cute-badge {
         display: inline-block;
-        background: #ffe4e6;
-        color: #9f1239;
+        background: #dbeafe;
+        color: #1e3a8a;
         padding: 0.36rem 0.78rem;
         border-radius: 999px;
         font-size: 0.9rem;
@@ -333,45 +334,45 @@ st.markdown(
     }
 
     .glass-card {
-        background: rgba(255, 255, 255, 0.82);
+        background: rgba(255, 255, 255, 0.84);
         border-radius: 26px;
         padding: 1.35rem;
-        border: 1px solid rgba(244, 114, 182, 0.22);
-        box-shadow: 0 14px 35px rgba(100, 116, 139, 0.12);
+        border: 1px solid rgba(37, 99, 235, 0.22);
+        box-shadow: 0 14px 35px rgba(37, 99, 235, 0.12);
         height: 100%;
     }
 
     .section-title {
         font-size: 1.35rem;
         font-weight: 900;
-        color: #9f1239;
+        color: #1e3a8a;
         margin-bottom: 0.65rem;
     }
 
     .small-note {
-        color: #64748b;
+        color: #475569;
         font-size: 0.96rem;
         line-height: 1.55;
     }
 
     .image-frame {
-        background: linear-gradient(135deg, #ffffff, #fff1f2);
+        background: linear-gradient(135deg, #ffffff, #eff6ff);
         padding: 0.75rem;
         border-radius: 28px;
-        border: 1px solid rgba(244, 63, 94, 0.16);
-        box-shadow: 0 16px 35px rgba(225, 29, 72, 0.12);
+        border: 1px solid rgba(37, 99, 235, 0.18);
+        box-shadow: 0 16px 35px rgba(37, 99, 235, 0.13);
     }
 
     .placeholder-photo {
         height: 390px;
         border-radius: 24px;
-        background: linear-gradient(135deg, #ffe4e6, #fdf2f8);
+        background: linear-gradient(135deg, #dbeafe, #e0f2fe);
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        color: #9f1239;
-        border: 2px dashed rgba(225, 29, 72, 0.35);
+        color: #1e3a8a;
+        border: 2px dashed rgba(37, 99, 235, 0.38);
         text-align: center;
     }
 
@@ -382,16 +383,16 @@ st.markdown(
     }
 
     .memory-card {
-        background: linear-gradient(135deg, #ffffff, #fff7ed);
+        background: linear-gradient(135deg, #ffffff, #eff6ff);
         border-radius: 24px;
         padding: 1.2rem 1.25rem;
-        border: 1px solid rgba(251, 113, 133, 0.18);
+        border: 1px solid rgba(37, 99, 235, 0.18);
         box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
         margin-bottom: 1rem;
     }
 
     .memory-title {
-        color: #9f1239;
+        color: #1e3a8a;
         font-size: 1.16rem;
         font-weight: 900;
         margin-bottom: 0.35rem;
@@ -404,17 +405,17 @@ st.markdown(
     }
 
     .wish-card {
-        background: linear-gradient(135deg, #ffffff, #fff1f2);
+        background: linear-gradient(135deg, #ffffff, #eff6ff);
         border-radius: 26px;
         padding: 1.4rem;
-        border: 1px solid rgba(225, 29, 72, 0.18);
-        box-shadow: 0 12px 28px rgba(225, 29, 72, 0.09);
+        border: 1px solid rgba(37, 99, 235, 0.18);
+        box-shadow: 0 12px 28px rgba(37, 99, 235, 0.10);
         margin-bottom: 1rem;
     }
 
     .wish-text {
         font-size: 1.1rem;
-        color: #881337;
+        color: #1e3a8a;
         line-height: 1.75;
         font-weight: 500;
     }
@@ -423,9 +424,9 @@ st.markdown(
         background: #ffffff;
         border-radius: 24px;
         padding: 1.5rem;
-        border: 1px solid rgba(225, 29, 72, 0.18);
-        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
-        color: #831843;
+        border: 1px solid rgba(37, 99, 235, 0.18);
+        box-shadow: 0 12px 30px rgba(37, 99, 235, 0.12);
+        color: #1e3a8a;
         font-size: 1.08rem;
         line-height: 1.8;
         font-weight: 500;
@@ -434,30 +435,38 @@ st.markdown(
     }
 
     .quote-strip {
-        background: #fff1f2;
+        background: #eff6ff;
         border-radius: 22px;
         padding: 1rem 1.2rem;
-        color: #9f1239;
+        color: #1e3a8a;
         font-weight: 800;
         text-align: center;
-        border: 1px solid rgba(244, 63, 94, 0.15);
+        border: 1px solid rgba(37, 99, 235, 0.16);
         margin-bottom: 1rem;
     }
 
     div.stButton > button {
         border-radius: 15px;
         border: 0;
-        background: linear-gradient(135deg, #fb7185, #db2777);
+        background: linear-gradient(135deg, #38bdf8, #2563eb);
         color: white;
         font-weight: 900;
         padding: 0.68rem 1.1rem;
-        box-shadow: 0 8px 18px rgba(219, 39, 119, 0.25);
+        box-shadow: 0 8px 18px rgba(37, 99, 235, 0.28);
     }
 
     div.stButton > button:hover {
         border: 0;
         color: white;
         transform: translateY(-1px);
+    }
+
+    div[data-testid="stMetric"] {
+        background: linear-gradient(135deg, #ffffff, #eff6ff);
+        border: 1px solid rgba(37, 99, 235, 0.16);
+        border-radius: 18px;
+        padding: 1rem;
+        box-shadow: 0 10px 24px rgba(37, 99, 235, 0.08);
     }
 
     .floating-items {
@@ -472,7 +481,7 @@ st.markdown(
     .float-item {
         position: absolute;
         animation: floatItem 9s linear infinite;
-        color: rgba(244, 63, 94, 0.45);
+        color: rgba(37, 99, 235, 0.42);
         font-size: 25px;
     }
 
@@ -498,7 +507,7 @@ st.markdown(
     </style>
 
     <div class="floating-items">
-        <div class="float-item">💗</div>
+        <div class="float-item">💙</div>
         <div class="float-item">🎈</div>
         <div class="float-item">✨</div>
         <div class="float-item">🎂</div>
@@ -746,7 +755,7 @@ with tab_memory:
         st.markdown(
             f"""
             <div class="memory-card">
-                <div class="memory-title">💗 {memory["title"]}</div>
+                <div class="memory-title">💙 {memory["title"]}</div>
                 <div class="memory-body">{memory["body"]}</div>
             </div>
             """,
