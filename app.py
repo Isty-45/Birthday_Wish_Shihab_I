@@ -593,21 +593,21 @@ Happy Birthday once again. I hope this makes you feel special, because you reall
 final_letter = f"""
 Dear {PERSON_NAME},
 
-Some people remain part of our story even when life takes us far apart. I don’t know if we will ever meet again, and I do not wish for us to meet again, but I want you to know that you will always be remembered. The dates we shared, the moments we lived, and the journey you began may fade one day. 
+Some people remain part of our story even when life takes us far apart. I don’t know if we will ever meet again, and I do not wish for us to meet again, but I want you to know that you will always be remembered. The dates we shared and the moments we lived began may fade one day. 
 
-You are living across oceans now, carrying the weight of new challenges, new routines, and new responsibilities. But I hope you never forget the dream that once lit your path that is your dream of joining Microsoft. Please don’t give up on it. 
-Even when the road feels long, even when the days feel heavy, remember that your hard work and persistence can take you there.
+You are living across oceans now, carrying the weight of new challenges, new routines, and new responsibilities. But I hope you never forget the dream that once lit your path that is your dream of joining Microsoft. Please don’t give up on it. Even when the road feels long, even when the days feel heavy, remember that your hard work and persistence can take you there.
 
 May your efforts turn into achievements. 
 May your struggles shape your strength. 
 May your dreams move closer each day. 
 And may you always find reasons to keep believing in yourself.
 
-This may be my last wish like this, because none of us knows where we will be next year, or what life will look like.
+Though life moves on, your story still lingers in mine. This may be my last wish like this, because none of us knows where we will be next year, or what life will look like.
 
 
 Happy Birthday, {PERSON_NAME}.
-You are remembered warmly today.
+You are remembered with respect and gratitude
+Maherun Nessa Isty
 """
 
 
