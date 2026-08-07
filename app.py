@@ -524,7 +524,7 @@ st.markdown(
 
 memories = [
     {
-        "title": "2nd March 2021 — The First Meeting",
+        "title": "2nd March 2021",
         "body": (
             "That day became the beginning of a small but meaningful memory. "
             "Some moments stay quietly special."
@@ -558,7 +558,7 @@ memories = [
         ),
     },
     {
-        "title": "12 December 2022 — A New Chapter",
+        "title": "12 December 2022",
         "body": (
             "On 12 December 2022, you left the country for the USA. "
             "That was not just a journey to another place; it was the beginning of a new life chapter."
@@ -571,7 +571,7 @@ memories = [
         ),
     },
     {
-        "title": "26 August — Your Day",
+        "title": "26 August",
         "body": (
             "August 26 is your birthday, and today is meant to remind you that you are appreciated, remembered, and warmly wished."
         ),
