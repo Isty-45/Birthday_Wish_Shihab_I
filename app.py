@@ -565,7 +565,7 @@ memories = [
         ),
     },
     {
-        "title": "Appriciation",
+        "title": "Appreciation",
         "body": (
             "Your journey deserves respect, because building a future far from home takes courage, effort, and patience."
         ),
