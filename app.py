@@ -524,16 +524,16 @@ st.markdown(
 
 memories = [
     {
-        "title": "The Smile Memory",
+        "title": "The First Memory",
         "body": (
             "Some people make ordinary moments feel brighter. "
-            "Your smile is one of those little things that can change the mood of a whole day."
+            "That first smile of yours stays with me, a simple memory that never fades."
         ),
     },
     {
         "title": "The Kindness Memory",
         "body": (
-            "The way you care, listen, and stay thoughtful makes you different in the best possible way."
+            "The way you listen and stay thoughtful makes you different in the best possible way."
         ),
     },
     {
@@ -547,7 +547,7 @@ memories = [
         "title": "2 March 2021 — The First Meeting",
         "body": (
             "That day became the beginning of a small but meaningful memory. "
-            "Even though you have not met again after that day, some moments stay quietly special."
+            "Some moments stay quietly special."
         ),
     },
     {
@@ -565,10 +565,9 @@ memories = [
         ),
     },
     {
-        "title": "University of Georgia",
+        "title": "Appriciation",
         "body": (
-            f"Now you are studying at {UNIVERSITY_NAME}. "
-            "That journey deserves respect, because building a future far from home takes courage, effort, and patience."
+            "Your journey deserves respect, because building a future far from home takes courage, effort, and patience."
         ),
     },
     {
@@ -580,37 +579,32 @@ memories = [
 ]
 
 birthday_wish = f"""
-Happy Birthday, {PERSON_NAME}! 🎂
+Happy Birthday, Shihab! 🎂
 
-I wish you a day full of peace, happiness, smiles, and small moments that make your heart feel light.
+On this special day, I wish you a day full of peace, happiness, smiles, and small moments that make your heart feel light.
 
-You are far from home now, studying at the University of Georgia and building your own future step by step. I truly wish that this new year of your life brings you success, confidence, good health, good people, and many beautiful achievements.
+Life isn’t always easy, but you’ve carried yourself with strength, patience, and determination. Every step you take toward your future is proof of your courage, and I couldn’t be prouder to see you growing into the person you are meant to be.
+May this year bring you peace in your heart, joy in your days, and confidence in your journey. 
+May you find good people who inspire you, opportunities that challenge you, and achievements that remind you of your worth. I hope your hard work turns into meaningful results, your struggles become stepping stones, and your dreams feel closer with every sunrise.
 
-May your hard work become meaningful results.
-May your difficult days become easier.
-May your dreams become closer.
-May your heart always find reasons to smile.
-
-Happy Birthday once again. I hope this day makes you feel special, because you really are.
+Happy Birthday once again. I hope this makes you feel special, because you really are.
 """
 
 final_letter = f"""
 Dear {PERSON_NAME},
 
-Some dates do not need to be repeated often to remain special.
+Some people remain part of our story even when life takes us far apart. I don’t know if we will ever meet again, and I do not wish for us to meet again, but I want you to know that you will always be remembered. The dates we shared, the moments we lived, and the journey you began may fade one day. 
 
-2 March 2021 was one of those dates — the first meeting, the first memory, and the beginning of a story that time did not completely erase.
+You are living across oceans now, carrying the weight of new challenges, new routines, and new responsibilities. But I hope you never forget the dream that once lit your path that is your dream of joining Microsoft. Please don’t give up on it. 
+Even when the road feels long, even when the days feel heavy, remember that your hard work and persistence can take you there.
 
-Then came 12 December 2022, the day you left the country for the USA. Since then, life has placed distance, new routines, new people, and a new world around you. Now you are working hard and building your future there, and that journey deserves respect.
+May your efforts turn into achievements. 
+May your struggles shape your strength. 
+May your dreams move closer each day. 
+And may you always find reasons to keep believing in yourself.
 
-On this birthday, the wish is simple but sincere:
+This may be my last wish like this, because none of us knows where we will be next year, or what life will look like.
 
-May you never feel alone in the path you are walking.
-May your dream will come true, In Sha Allah.
-May your efforts become achievements.
-May your tired days end with peace.
-May your new year bring good people, good health, good grades, and good memories.
-May you become everything you are hoping to become.
 
 Happy Birthday, {PERSON_NAME}.
 You are remembered warmly today.
@@ -720,7 +714,7 @@ with tab_home:
 
     st.divider()
 
-    c1, c2, c3, c4 = st.columns(4)
+    c1, c2, c3 = st.columns(4)
 
     with c1:
         st.metric("Birthday Date", "26 August")
@@ -730,9 +724,6 @@ with tab_home:
 
     with c3:
         st.metric("Days Living There", days_since_left_country)
-
-    with c4:
-        st.metric("University", "Georgia")
 
 
 # =========================================================
@@ -783,7 +774,7 @@ with tab_surprise:
 
     with c2:
         if st.button("Open Box 2 ✨"):
-            st.success("Unlocked: I wish your hard work in the USA brings you beautiful success.")
+            st.success("Unlocked: I wish your hard work brings you beautiful success.")
 
     with c3:
         if st.button("Open Box 3 🎈"):
@@ -797,7 +788,7 @@ with tab_surprise:
         "I hope your birthday feels soft, peaceful, and full of tiny happy moments.",
         "May your day be as bright as your smile and as sweet as your favorite dessert.",
         "I wish your heart feels lighter today, because birthdays should feel warm and special.",
-        "May the USA chapter of your life become more beautiful, successful, and full of good surprises.",
+        "May this chapter of your life become more beautiful, successful, and full of good surprises.",
         "I hope this birthday gives you a reason to smile even on a busy university day.",
         "May your dreams come closer, your worries become smaller, and your happiness grow bigger.",
         "I wish you good grades, good friends, peaceful nights, and a heart full of confidence.",
