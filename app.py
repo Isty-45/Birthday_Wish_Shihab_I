@@ -714,7 +714,7 @@ with tab_home:
 
     st.divider()
 
-    c1, c2, c3 = st.columns(4)
+   c1, c2, c3, c4 = st.columns(4)
 
     with c1:
         st.metric("Birthday Date", "26 August")
@@ -725,7 +725,8 @@ with tab_home:
     with c3:
         st.metric("Days Living There", days_since_left_country)
 
-
+    with c4:
+        st.metric("Global Scholar Award", "Congratulations!!!")
 # =========================================================
 # Memory Album
 # =========================================================
