@@ -619,7 +619,6 @@ st.markdown(
     <div class="hero-box">
         <div class="hero-title">🎂 Happy Birthday, {PERSON_NAME}!</div>
         <div class="hero-subtitle">
-
             Today is all about celebrating you and the beautiful journey you are building.
         </div>
         <br>
