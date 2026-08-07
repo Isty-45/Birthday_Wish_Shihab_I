@@ -605,7 +605,6 @@ And may you always find reasons to keep believing in yourself.
 Though life moves on, your story still lingers in mine. This may be my last wish like this, because none of us knows where we will be next year, or what life will look like.
 
 
-Happy Birthday, {PERSON_NAME}.
 You are remembered with respect and gratitude
 Maherun Nessa Isty
 """
