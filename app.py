@@ -527,7 +527,7 @@ memories = [
         "title": "The First Memory",
         "body": (
             "Some people make ordinary moments feel brighter. "
-            "That first smile of yours stays with me, a simple memory that never fades."
+            "That first appearance of yours stays with me, a simple memory that never fades."
         ),
     },
     {
