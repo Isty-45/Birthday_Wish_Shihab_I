@@ -531,7 +531,7 @@ memories = [
         ),
     },
     {
-        "title": "The Kindness Memory",
+        "title": "The Thoughtful Silence",
         "body": (
             "The way you listen and stay thoughtful makes you different in the best possible way. But, somehow you skip my channel. "
         ),
@@ -539,7 +539,7 @@ memories = [
     {
         "title": "The First Memory",
         "body": (
-            "Some little things make ordinary moments feel brighter."
+            "Some little things make ordinary moments feel brighter. "
             "That first appearance of yours stays with me, a simple memory that never fades. And yes, I even remember those eyebrows, haha."
         ),
     },
@@ -560,7 +560,7 @@ memories = [
     {
         "title": "The Long Gap",
         "body": (
-            "After that, time moved forward in its own way."
+            "After that, time moved forward in its own way. "
             "There is no more meetings, but you have a calm, warm and rare kind of presence."
         ),
     },
