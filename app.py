@@ -533,35 +533,35 @@ memories = [
     {
         "title": "The Kindness Memory",
         "body": (
-            "The way you listen and stay thoughtful makes you different in the best possible way."
-        ),
-    },
-    {
-        "title": "The Favorite Person Energy",
-        "body": (
-            "You have a calm, warm, and rare kind of presence. "
-            "That is something worth celebrating today."
+            "The way you listen and stay thoughtful makes you different in the best possible way. But, somehow you skip my channel. "
         ),
     },
     {
         "title": "The First Memory",
         "body": (
-           "Some people make ordinary moments feel brighter. "
-           "That first appearance of yours stays with me, a simple memory that never fades."
+            "Some little things make ordinary moments feel brighter."
+            "That first appearance of yours stays with me, a simple memory that never fades. And yes, I even remember those eyebrows, haha."
         ),
     },
     {
-        "title": "The Long Gap After That Day",
+        "title": "The Friendship Memory",
         "body": (
-            "After that first meeting, time moved forward in its own way. "
-            "There were no more meetings, but the memory did not completely fade."
+           "Slowly something clicked between us."
+           "Somehow, in the quiet flow of time, we became friends."
         ),
     },
     {
-        "title": "12 December 2022",
+        "title": "13 December 2022",
         "body": (
-            "On 12 December 2022, you left the country for the USA. "
-            "That was not just a journey to another place; it was the beginning of a new life chapter."
+            "On 13 December 2022, you left the country. "
+            "That was not just a journey to another place, it was the beginning of a new life chapter."
+        ),
+    },
+    {
+        "title": "The Long Gap",
+        "body": (
+            "After that, time moved forward in its own way."
+            "There is no more meetings, but you have a calm, warm and rare kind of presence."
         ),
     },
     {
