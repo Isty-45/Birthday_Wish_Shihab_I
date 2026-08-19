@@ -53,7 +53,7 @@ def check_password():
 
     Example:
 
-    APP_PASSWORD = "YourPasswordHere"
+    APP_PASSWORD = "Shihab2608"
     """
 
     # -----------------------------------------------------
