@@ -560,8 +560,8 @@ memories = [
     {
         "title": "The Long Gap",
         "body": (
-            "After that, time moved forward in its own way. "
-            "There is no more meetings, but you have a calm, warm and rare kind of presence."
+            "After that, time moved forward in its own way. There is no more meetings, but you have a calm, warm and rare kind of presence."
+            " Though I once carried a silent anger, it’s all forgotten now "
         ),
     },
     {
